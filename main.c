@@ -12,22 +12,25 @@
 //******************************************************************************
 
 #include "msp430.h"
+
+
 int main(void)
 {
   WDTCTL = WDTPW | WDTHOLD;		// Stop watchdog timer
   PMMCTL0 = PMMPW;		        // Open PMM Module
   PM5CTL0 &= ~LOCKLPM5;			// Clear locked IO Pins
+  //rtc_init()
   P1DIR |= 0x01;                        // Set P1.0 to output direction
   P9DIR |= 0x80;                        // Set P9.7 to output direction
-  P9OUT ^= 0x80;                      // Toggle P9.7 using exclusive-OR
+  //P9OUT ^= 0x80;                      // Toggle P9.7 using exclusive-OR
   for (;;)
   {
     volatile unsigned int i;            // volatile to prevent optimization
 
     P1OUT ^= 0x01;                      // Toggle P1.0 using exclusive-OR
-    P9OUT ^= 0x80;                      // Toggle P9.7 using exclusive-OR
-    i = 10000;                          // SW Delay
+    i = 50000;                          // SW Delay
     do i--;
     while (i != 0);
+    P9OUT ^= 0x80;                      // Toggle P9.7 using exclusive-OR
   }
 }
