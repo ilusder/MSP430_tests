@@ -20,6 +20,8 @@
 
 volatile unsigned char mode = STARTUP_MODE;
 
+volatile unsigned int counter = 0;
+
 void fill_zero_LCD(void)
 {
   showChar('0', pos1);
@@ -52,9 +54,22 @@ int main(void)
   WDTCTL = WDTPW | WDTHOLD;		// Stop watchdog timer
   PMMCTL0 = PMMPW;		        // Open PMM Module
   PM5CTL0 &= ~LOCKLPM5;			// Clear locked IO Pins
+    // Configure button S2 (P1.2) interrupt
+    GPIO_selectInterruptEdge(GPIO_PORT_P1, GPIO_PIN2, GPIO_HIGH_TO_LOW_TRANSITION);
+    GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P1, GPIO_PIN2);
+    GPIO_clearInterrupt(GPIO_PORT_P1, GPIO_PIN2);
+    GPIO_enableInterrupt(GPIO_PORT_P1, GPIO_PIN2);
+        // Configure in (P1.6) interrupt
+    GPIO_selectInterruptEdge(GPIO_PORT_P1, GPIO_PIN6, GPIO_HIGH_TO_LOW_TRANSITION);
+    GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P1, GPIO_PIN6);
+    GPIO_clearInterrupt(GPIO_PORT_P1, GPIO_PIN6);
+    GPIO_enableInterrupt(GPIO_PORT_P1, GPIO_PIN6);
   Init_LCD();
   displayScrollText("WELCOME TO LED SWITCH");
   //rtc_init()
+  GPIO_clearInterrupt(GPIO_PORT_P1, GPIO_PIN2);
+  GPIO_clearInterrupt(GPIO_PORT_P1, GPIO_PIN6);
+   __enable_interrupt();
   P1DIR |= 0x01;                        // Set P1.0 to output direction
   P9DIR |= 0x80;                        // Set P9.7 to output direction
   P9OUT ^= 0x80;                      // 
@@ -62,8 +77,9 @@ int main(void)
   show_int_LCD(32);
   for (;;)
   {
+    
+    show_int_LCD(counter);
     volatile unsigned int i;            // volatile to prevent optimization
-
     P1OUT ^= 0x01;                      // Toggle P1.0 using exclusive-OR
     i = 50000;                          // SW Delay
     do i--;
@@ -73,3 +89,24 @@ int main(void)
 }
 
 
+/*
+ * PORT1 Interrupt Service Routine
+ * Handles S1 and S2 button press interrupts
+ */
+#pragma vector = PORT1_VECTOR
+__interrupt void PORT1_ISR(void)
+{
+  switch(__even_in_range(P1IV, P1IV_P1IFG7))
+  {
+    case P1IV_NONE : break;
+    case P1IV_P1IFG0 : break;
+    case P1IV_P1IFG1 : break;
+    case P1IV_P1IFG3 : break;
+    case P1IV_P1IFG4 : break;
+    case P1IV_P1IFG5 : break;
+    case P1IV_P1IFG6 :  counter++; break;
+    case P1IV_P1IFG7 : break;
+    case P1IV_P1IFG2 :  counter++; break;    // Button S2 pressed
+  }
+  
+}
