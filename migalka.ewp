@@ -61,7 +61,7 @@
                 </option>
                 <option>
                     <name>RTLibraryPath</name>
-                    <state>$TOOLKIT_DIR$\lib\dlib\dl430fn.r43</state>
+                    <state>$TOOLKIT_DIR$\lib\dlib\dl430xlsfn.r43</state>
                 </option>
                 <option>
                     <name>Input variant</name>
@@ -104,11 +104,11 @@
                 </option>
                 <option>
                     <name>GStackSize2</name>
-                    <state>80</state>
+                    <state>160</state>
                 </option>
                 <option>
                     <name>GHeapSize2</name>
-                    <state>80</state>
+                    <state>160</state>
                 </option>
                 <option>
                     <name>RadioDataModelType</name>
@@ -405,7 +405,8 @@
                 </option>
                 <option>
                     <name>newCCIncludePaths</name>
-                    <state></state>
+                    <state>$PROJ_DIR$\..</state>
+                    <state>C:\Users\ilus\Documents\IAR Embedded Workbench\driverlib\MSP430FR5xx_6xx</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -812,6 +813,8 @@
                 <option>
                     <name>XIncludes</name>
                     <state>$TOOLKIT_DIR$\LIB\</state>
+                    <state>C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\430\examples\driverlib\driverlib\MSP430F5xx_6xx</state>
+                    <state>C:\Users\ilus\Documents\IAR Embedded Workbench\driverlib</state>
                 </option>
                 <option>
                     <name>ModuleStatus</name>
@@ -823,7 +826,7 @@
                 </option>
                 <option>
                     <name>XclFile</name>
-                    <state>$TOOLKIT_DIR$\CONFIG\lnk430F149.xcl</state>
+                    <state>$TOOLKIT_DIR$\config\linker\lnk430fr6989.xcl</state>
                 </option>
                 <option>
                     <name>XclFileSlave</name>
@@ -951,7 +954,7 @@
                 </option>
                 <option>
                     <name>ExtraOutputFile</name>
-                    <state>templproj.a43</state>
+                    <state>migalka.a43</state>
                 </option>
                 <option>
                     <name>ExtraOutputFormat</name>
@@ -1120,7 +1123,11 @@
                 <debug>1</debug>
                 <option>
                     <name>CUTest</name>
-                    <state>###Uninitialized###</state>
+                    <state>-I$TOOLKIT_DIR$\inc</state>
+                    <state>-@$TOOLKIT_DIR$\bin\iar.cmd</state>
+                    <state>-@$PROJ_DIR$\source.txt</state>
+                    <state>-@$PROJ_DIR$\include.txt</state>
+                    <state>--preinclude=$PROJ_DIR$\IAR_ULPAdvisor_Defs.h</state>
                 </option>
                 <option>
                     <name>ULPRules</name>
@@ -1133,7 +1140,7 @@
                 </option>
                 <option>
                     <name>OutputFile</name>
-                    <state></state>
+                    <state>$PROJ_FNAME$.ulp</state>
                 </option>
                 <option>
                     <name>ULPStatus</name>
@@ -2293,6 +2300,219 @@
             <data />
         </settings>
     </configuration>
+    <group>
+        <name>driverlib</name>
+        <group>
+            <name>MSP430FR5xx_6xx</name>
+            <group>
+                <name>deprecated</name>
+                <group>
+                    <name>CCS</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\deprecated\CCS\msp430fr5xx_6xxgeneric.h</name>
+                    </file>
+                </group>
+                <group>
+                    <name>IAR</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\deprecated\IAR\msp430fr5xx_6xxgeneric.h</name>
+                    </file>
+                </group>
+            </group>
+            <group>
+                <name>inc</name>
+                <file>
+                    <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\inc\hw_memmap.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\inc\hw_regaccess.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\inc\hw_types.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\inc\version.h</name>
+                </file>
+            </group>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\adc12_b.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\adc12_b.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\aes256.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\aes256.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\comp_e.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\comp_e.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\crc.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\crc.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\crc32.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\crc32.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\cs.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\cs.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\dma.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\dma.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\driverlib.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\esi.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\esi.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\eusci_a_spi.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\eusci_a_spi.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\eusci_a_uart.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\eusci_a_uart.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\eusci_b_i2c.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\eusci_b_i2c.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\eusci_b_spi.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\eusci_b_spi.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\framctl.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\framctl.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\gpio.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\gpio.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\lcd_c.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\lcd_c.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\mpu.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\mpu.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\mpy32.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\mpy32.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\pmm.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\pmm.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\ram.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\ram.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\ref_a.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\ref_a.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\rtc_b.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\rtc_b.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\rtc_c.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\rtc_c.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\sfr.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\sfr.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\sysctl.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\sysctl.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\timer_a.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\timer_a.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\timer_b.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\timer_b.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\tlv.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\tlv.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\wdt_a.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\driverlib\MSP430FR5xx_6xx\wdt_a.h</name>
+            </file>
+        </group>
+    </group>
+    <file>
+        <name>$PROJ_DIR$\hal_LCD.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\hal_LCD.h</name>
+    </file>
     <file>
         <name>$PROJ_DIR$\main.c</name>
     </file>

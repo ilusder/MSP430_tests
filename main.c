@@ -12,17 +12,24 @@
 //******************************************************************************
 
 #include "msp430.h"
+#include <driverlib.h>
+#include "hal_LCD.h"
 
+#define STARTUP_MODE         0
+
+volatile unsigned char mode = STARTUP_MODE;
 
 int main(void)
 {
   WDTCTL = WDTPW | WDTHOLD;		// Stop watchdog timer
   PMMCTL0 = PMMPW;		        // Open PMM Module
   PM5CTL0 &= ~LOCKLPM5;			// Clear locked IO Pins
+  Init_LCD();
+  displayScrollText("WELCOME TO LED SWITCH");
   //rtc_init()
   P1DIR |= 0x01;                        // Set P1.0 to output direction
   P9DIR |= 0x80;                        // Set P9.7 to output direction
-  P9OUT ^= 0x80;                      // Toggle P9.7 using exclusive-OR
+  P9OUT |= 0x80;                      // 
   for (;;)
   {
     volatile unsigned int i;            // volatile to prevent optimization

@@ -12,7 +12,7 @@
         <ByteLimit>50</ByteLimit>
     </Stack>
     <DebugChecksum>
-        <Checksum>1738389458</Checksum>
+        <Checksum>1056252925</Checksum>
     </DebugChecksum>
     <CodeCoverage>
         <Enabled>_ 0</Enabled>
@@ -86,6 +86,10 @@
     <EEM_Cycle_Counter_1>
         <Counter1>0000000000000000000000000000000000000000000000000000000000000000</Counter1>
     </EEM_Cycle_Counter_1>
+    <SfrWindow>
+        <Show>1 1</Show>
+        <Sort>4 0</Sort>
+    </SfrWindow>
     <PowerLog>
         <Title_0>Energy</Title_0>
         <Symbol_0>0 4 0</Symbol_0>
