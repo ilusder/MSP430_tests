@@ -22,7 +22,7 @@ int main(void)
   //rtc_init()
   P1DIR |= 0x01;                        // Set P1.0 to output direction
   P9DIR |= 0x80;                        // Set P9.7 to output direction
-  //P9OUT ^= 0x80;                      // Toggle P9.7 using exclusive-OR
+  P9OUT ^= 0x80;                      // Toggle P9.7 using exclusive-OR
   for (;;)
   {
     volatile unsigned int i;            // volatile to prevent optimization
