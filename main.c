@@ -54,6 +54,11 @@ int main(void)
   WDTCTL = WDTPW | WDTHOLD;		// Stop watchdog timer
   PMMCTL0 = PMMPW;		        // Open PMM Module
   PM5CTL0 &= ~LOCKLPM5;			// Clear locked IO Pins
+      // Configure button S1 (P1.1) interrupt
+    GPIO_selectInterruptEdge(GPIO_PORT_P1, GPIO_PIN1, GPIO_HIGH_TO_LOW_TRANSITION);
+    GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P1, GPIO_PIN1);
+    GPIO_clearInterrupt(GPIO_PORT_P1, GPIO_PIN1);
+    GPIO_enableInterrupt(GPIO_PORT_P1, GPIO_PIN1);
     // Configure button S2 (P1.2) interrupt
     GPIO_selectInterruptEdge(GPIO_PORT_P1, GPIO_PIN2, GPIO_HIGH_TO_LOW_TRANSITION);
     GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P1, GPIO_PIN2);
@@ -67,6 +72,7 @@ int main(void)
   Init_LCD();
   displayScrollText("WELCOME TO LED SWITCH");
   //rtc_init()
+  GPIO_clearInterrupt(GPIO_PORT_P1, GPIO_PIN1);
   GPIO_clearInterrupt(GPIO_PORT_P1, GPIO_PIN2);
   GPIO_clearInterrupt(GPIO_PORT_P1, GPIO_PIN6);
    __enable_interrupt();
@@ -100,7 +106,7 @@ __interrupt void PORT1_ISR(void)
   {
     case P1IV_NONE : break;
     case P1IV_P1IFG0 : break;
-    case P1IV_P1IFG1 : break;
+    case P1IV_P1IFG1 :  counter = 0; break;// Button S1 pressed
     case P1IV_P1IFG3 : break;
     case P1IV_P1IFG4 : break;
     case P1IV_P1IFG5 : break;
