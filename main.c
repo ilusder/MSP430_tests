@@ -22,6 +22,8 @@ volatile unsigned char mode = STARTUP_MODE;
 
 volatile unsigned int counter = 0;
 
+volatile unsigned int timer = 0;
+
 void fill_zero_LCD(void)
 {
   showChar('0', pos1);
@@ -51,9 +53,19 @@ void show_int_LCD(int num)
 
 int main(void)
 {
+  Calendar currentTime;
+  
   WDTCTL = WDTPW | WDTHOLD;		// Stop watchdog timer
   PMMCTL0 = PMMPW;		        // Open PMM Module
   PM5CTL0 &= ~LOCKLPM5;			// Clear locked IO Pins
+    //set timer
+  //BCSCTL1 |= DIVA_3;    // divide by 8
+  //BCSCTL3 |= XCAP_3;
+  TA1CCTL0 = CM_0 + CCIS_0 + OUTMOD_0 + CCIE;
+  TA1CCR0 = 8096;
+  TA1CTL = TASSEL_1 + ID_2 + MC_1;
+  
+  
       // Configure button S1 (P1.1) interrupt
     GPIO_selectInterruptEdge(GPIO_PORT_P1, GPIO_PIN1, GPIO_HIGH_TO_LOW_TRANSITION);
     GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P1, GPIO_PIN1);
@@ -71,29 +83,37 @@ int main(void)
     GPIO_enableInterrupt(GPIO_PORT_P1, GPIO_PIN6);
   Init_LCD();
   displayScrollText("WELCOME TO LED SWITCH");
-  //rtc_init()
   GPIO_clearInterrupt(GPIO_PORT_P1, GPIO_PIN1);
   GPIO_clearInterrupt(GPIO_PORT_P1, GPIO_PIN2);
   GPIO_clearInterrupt(GPIO_PORT_P1, GPIO_PIN6);
+  
+  
    __enable_interrupt();
-  P1DIR |= 0x01;                        // Set P1.0 to output direction
-  P9DIR |= 0x80;                        // Set P9.7 to output direction
-  P9OUT ^= 0x80;                      // 
+  P1DIR |= BIT0;                        // Set P1.0 to output direction
+  P9DIR |= BIT7;                        // Set P9.7 to output direction
+  P9OUT |= BIT7;                      //
+  P1OUT &= ~BIT0;
   fill_zero_LCD();
   show_int_LCD(32);
   for (;;)
   {
-    
-    show_int_LCD(counter);
     volatile unsigned int i;            // volatile to prevent optimization
-    P1OUT ^= 0x01;                      // Toggle P1.0 using exclusive-OR
+    P1OUT ^= BIT0;                      // Toggle P1.0 using exclusive-OR
+    P9OUT ^= BIT7;                      // Toggle P9.7 using exclusive-OR
     i = 50000;                          // SW Delay
     do i--;
     while (i != 0);
-    P9OUT ^= 0x80;                      // Toggle P9.7 using exclusive-OR
   }
 }
 
+//interupt every 1000ms
+#pragma vector=TIMER1_A0_VECTOR
+__interrupt void TIMER1_A0_ISR(void)
+{
+  timer++;
+  counter++;
+  show_int_LCD(counter);
+}
 
 /*
  * PORT1 Interrupt Service Routine
@@ -114,5 +134,5 @@ __interrupt void PORT1_ISR(void)
     case P1IV_P1IFG7 : break;
     case P1IV_P1IFG2 :  counter++; break;    // Button S2 pressed
   }
-  
+  show_int_LCD(counter);
 }
