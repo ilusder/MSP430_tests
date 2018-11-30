@@ -53,8 +53,6 @@ void show_int_LCD(int num)
 
 int main(void)
 {
-  Calendar currentTime;
-  
   WDTCTL = WDTPW | WDTHOLD;		// Stop watchdog timer
   PMMCTL0 = PMMPW;		        // Open PMM Module
   PM5CTL0 &= ~LOCKLPM5;			// Clear locked IO Pins
@@ -65,6 +63,11 @@ int main(void)
   TA1CCR0 = 8096;
   TA1CTL = TASSEL_1 + ID_2 + MC_1;
   
+  TA0R = 0x0000;  
+ TA0CTL = TASSEL__ACLK + MC__UP    + TACLR         + ID__1                + TAIE;
+ TA0CCR0 = 32768;
+  //_BIS_SR (LPM3_bits + GIE); 
+
   
       // Configure button S1 (P1.1) interrupt
     GPIO_selectInterruptEdge(GPIO_PORT_P1, GPIO_PIN1, GPIO_HIGH_TO_LOW_TRANSITION);
@@ -110,9 +113,7 @@ int main(void)
 #pragma vector=TIMER1_A0_VECTOR
 __interrupt void TIMER1_A0_ISR(void)
 {
-  timer++;
-  counter++;
-  show_int_LCD(counter);
+  //timer++;
 }
 
 /*
@@ -136,3 +137,15 @@ __interrupt void PORT1_ISR(void)
   }
   show_int_LCD(counter);
 }
+
+
+#pragma vector=TIMER0_A1_VECTOR
+__interrupt void Timer (void) {
+	if (TA0IV == 0x0E) 
+        {
+            timer++;
+            show_int_LCD(timer);
+        }
+        
+}
+

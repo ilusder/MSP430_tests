@@ -406,7 +406,7 @@
                 <option>
                     <name>newCCIncludePaths</name>
                     <state>$PROJ_DIR$\..</state>
-                    <state>C:\Users\ilus\Documents\IAR Embedded Workbench\driverlib\MSP430FR5xx_6xx</state>
+                    <state>C:\Users\ilyad\Documents\iar_projects\driverlib\MSP430FR5xx_6xx</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>

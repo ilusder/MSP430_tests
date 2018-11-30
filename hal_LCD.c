@@ -173,6 +173,8 @@ void displayScrollText(char *msg)
     }
 }
 
+
+
 /*
  * Displays input character at given LCD digit/position
  * Only spaces, numeric digits, and uppercase letters are accepted characters
